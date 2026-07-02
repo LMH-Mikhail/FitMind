@@ -1,0 +1,21 @@
+.DS_Store
+
+# Go
+backend/bin/
+backend/*.log
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Flutter / Dart
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/.packages
+mobile/build
+mobile/build/
+mobile/pubspec.lock
+
+# Local environment files
+.env
+backend/.env
+mobile/.env
