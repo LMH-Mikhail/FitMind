@@ -1,5 +1,7 @@
 # FitMind
 
+Dress with Intelligence
+
 FitMind 是一个移动端 AI 穿搭助手。当前代码落地的是第一版电子衣橱功能：
 
 ```text
