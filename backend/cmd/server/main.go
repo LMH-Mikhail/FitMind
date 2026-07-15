@@ -48,6 +48,7 @@ func main() {
 	// gin.New 不带默认中间件，因此这里显式挂载访问日志和 panic recovery。
 	engine := gin.New()
 	engine.Use(gin.Logger(), gin.Recovery())
+	engine.Static(conf.ServerConfig.Storage.PublicUploadURL, conf.ServerConfig.Storage.UploadDir)
 
 	// 5. 注册项目 HTTP 路由。
 	// internal.Register 只负责把各个 controller 挂到 Gin engine 上。

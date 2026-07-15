@@ -14,6 +14,10 @@ const (
 	defaultIdleTimeoutSecond  = 60
 	defaultUploadDir          = "./uploads"
 	defaultPublicUploadURL    = "/uploads"
+
+	defaultJWTIssuer         = "fitmind"
+	defaultJWTSecret         = "fitmind-development-secret-change-me"
+	defaultAccessTokenSecond = 24 * 60 * 60
 )
 
 // ServerConfig保存应用启动后使用的全局配置
@@ -31,6 +35,7 @@ type Config struct {
 	App      AppConfig
 	Database DatabaseConfig
 	Storage  StorageConfig
+	Auth     AuthConfig
 }
 
 // AppConfig保存HTTP服务配置
@@ -60,6 +65,12 @@ type StorageConfig struct {
 	PublicUploadURL string
 }
 
+type AuthConfig struct {
+	JWTSecret      string
+	JWTIssuer      string
+	AccessTokenTTL time.Duration
+}
+
 // InitConfig从环境变量初始化全局配置
 // 输入：进程环境变量
 // 输出：初始化后的Config
@@ -78,6 +89,11 @@ func InitConfig() Config {
 		Storage: StorageConfig{
 			UploadDir:       getEnv("FITMIND_UPLOAD_DIR", defaultUploadDir),
 			PublicUploadURL: getEnv("FITMIND_PUBLIC_UPLOAD_URL", defaultPublicUploadURL),
+		},
+		Auth: AuthConfig{
+			JWTSecret:      getEnv("FITMIND_JWT_SECRET", defaultJWTSecret),
+			JWTIssuer:      getEnv("FITMIND_JWT_ISSUER", defaultJWTIssuer),
+			AccessTokenTTL: getEnvDurationSecond("FITMIND_ACCESS_TOKEN_TTL_SECONDS", int(defaultAccessTokenSecond)),
 		},
 	}
 

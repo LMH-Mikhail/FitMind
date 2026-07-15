@@ -19,6 +19,9 @@ type Route interface {
 func Register(engine *gin.Engine) {
 	routes := []Route{
 		&v1.HealthController{},
+		&v1.AuthController{},
+		&v1.ClothingItemController{},
+		&v1.UploadController{},
 	}
 
 	for _, route := range routes {
